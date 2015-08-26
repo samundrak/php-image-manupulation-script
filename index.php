@@ -8,7 +8,7 @@ checkIn();
 	</head>
 	<body>
 
-		<form method="post" >
+		<form method="post" action="">
 			<table >
 
 				<tr>

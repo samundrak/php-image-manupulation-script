@@ -16,7 +16,9 @@ require_once('ImgGenerator.php');
 					$pass =  false;
 				}
 			}
+
 			if($pass){
+
 				$accountBilled = $_POST['accountBillder'];
 				$invoiceId = $_POST['invoiceID'];
 				$amount = $_POST['amount'];

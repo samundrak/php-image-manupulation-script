@@ -1,6 +1,7 @@
 <?php include 'FormAccess.php';
 //$form  =  new FormAccess();
 checkIn();
+echo 'Image generation';
 ?>
 <html>
 	<head>

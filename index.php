@@ -1,7 +1,13 @@
-<?php include 'FormAccess.php';
-//$form  =  new FormAccess();
-checkIn();
-echo 'Image generation';
+<?php
+ob_start();
+include 'FormAccess.php';
+if(isset($_POST['submit'])){
+	session_start();
+	$_SESSION['data'] =  $_POST;
+	header("Location: confirm.php");
+
+}
+ob_flush();
 ?>
 <html>
 	<head>
@@ -9,12 +15,26 @@ echo 'Image generation';
 	</head>
 	<body>
 
-		<form method="post" action="">
+		<form method="post" >
 			<table >
+				<tr><td>Firstname</td><td>
+						<input type="text" name="firstname">
+					</td></tr>
+				<tr><td>Lastname</td><td>
+						<input type="text" name="lastname">
 
+					</td></tr>
+				<tr><td>Your Email</td><td>
+						<input type="text" name="email">
+
+					</td></tr>
+				<tr><td>Phone number</td><td>
+						<input type="text" name="number">
+
+					</td></tr>
 				<tr>
 					<td><label>Account Billed</label></td>
-					<td><input type="text" name="accountBillder" /></td>
+					<td><input type="text" name="accountBilld" /></td>
 			</tr>
 			<tr>
 				<td><label>Invoice ID</label></td>
@@ -23,6 +43,21 @@ echo 'Image generation';
 				<tr>
 			<td><label>Amount</label></td>
 			<td><input type="text" name="amount" /></td>
+				<tr><td>Zip Code</td><td>
+						<input type="text" name="zip">
+
+					</td></tr>
+				<tr><td>Address</td><td>
+						<input type="text" name="address">
+
+					</td></tr>
+				<tr><td>Country</td><td>
+						<select name="country">
+							<option value="usa">usa</option>
+							<option value="uk">uk</option>
+							<option value="france">france</option>
+						</select>
+					</td></tr>
 
 				</tr>
 			   <tr><td><input type="submit" name="submit"  value="submit"/></td></tr>

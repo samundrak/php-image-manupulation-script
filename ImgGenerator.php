@@ -162,8 +162,8 @@ private $config;
     }
 
     private function manipulateImage(){
-        $img = imagecreate(800,400);
         $config = $this->config;
+        $img = imagecreate($config->dimension->width,$config->dimension->height);
         $background_color = imagecolorallocate($img,$this->config->color->background[0],$this->config->color->background[1],$this->config->color->background[2]);
         $foreground_color = imagecolorallocate($img,$this->config->color->foreground[0],$this->config->color->foreground[1],$this->config->color->foreground[2]);
 //        imagettftext($img,12,0,100,100,$this->config->,)

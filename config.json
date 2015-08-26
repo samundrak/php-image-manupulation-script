@@ -1,0 +1,34 @@
+{
+  "companyname" : "http://www.company.com",
+
+  "companylogoURL" : "logo.png",
+
+   "fontsize" : "10",
+
+  "fonttype" : "path to font",
+
+  "imageSavePath" : "",
+
+  "imageformat" : "jpg",
+
+  "color" : {
+
+    "background" : [255,255,255],
+
+    "foreground" : [0,0,0]
+  },
+
+  "labels" : {
+
+    "accountBilled" : "Account Billed",
+
+    "invoiceId" : "Invoice ID",
+
+    "amount" : "Amount",
+
+    "date" : "Date",
+
+    "plan" :"Plan"
+
+  }
+}

@@ -1,4 +1,6 @@
 {
+  "template" : "template.jpg",
+  
   "companyname" : "http://www.company.com",
 
   "companylogoURL" : "logo.png",

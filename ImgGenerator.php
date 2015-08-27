@@ -163,7 +163,14 @@ private $config;
 
     private function manipulateImage(){
         $config = $this->config;
-        $img = imagecreate($config->dimension->width,$config->dimension->height);
+
+        if(!file_exists($config->template)) {
+          $img = imagecreate($config->dimension->width,$config->dimension->height);
+        }
+        else{
+          $img = imagecreatefromjpeg($config->template) or die('Permission denied please enable writeable Permission  this image');
+        }
+
         $background_color = imagecolorallocate($img,$this->config->color->background[0],$this->config->color->background[1],$this->config->color->background[2]);
         $foreground_color = imagecolorallocate($img,$this->config->color->foreground[0],$this->config->color->foreground[1],$this->config->color->foreground[2]);
 //        imagettftext($img,12,0,100,100,$this->config->,)

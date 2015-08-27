@@ -32,14 +32,15 @@ class Form
 				$imgGenerator = new ImgGenerator();
 				$imgGenerator->setAccountBilld($accountBilled);
 				$imgGenerator->setAmount($amount);
-				$imgGenerator->setInvoiceId($amount);
+				$imgGenerator->setInvoiceId($invoiceId);
 				$imgGenerator->initConfigs();
 				$link = $imgGenerator->createImage();
 				if ($link === null) {
 					echo 'unable to create image';
 				} else {
 //					 header("Location: index.php");
-					echo '<a href="download.php?img=' . $link . '"> Download Image</a>';
+					header("Location: download.php?invoice=".$link);
+					// echo '<a href="download.php?img=' . $link . '"> Download Image</a>';
 				}
 			}
 			// $imgGenerator->_

@@ -2,45 +2,55 @@
 require_once('ImgGenerator.php');
 require_once('vendor/autoload.php');
 
-	  function checkIn($credits){
-		if(isset($_POST['submit'])){
+class Form
+{
+	public static function checkIn($credits)
+	{
+		if (isset($_POST['submit'])) {
 //			$inputFields = array(
 //				'accountBillder',
 //				'invoiceID',
 //				'amount',
 //				);
 
-
-			$pass =  true;
+            foreach($credits as $key => $value){
+                $credits[$key] = filter_var($value,FILTER_SANITIZE_STRING);
+            }
+			$pass = true;
 //			foreach ($inputFields as $val) {
 //				if(empty($_POST[$val])){
 //					$pass =  false;
 //				}
 //			}
 
-			if($pass){
+			if ($pass) {
 
-				$accountBilled = $credits['accountBilld'];
-				$invoiceId = $credits['invoiceID'];
-				$amount = $credits['amount'];
+				$accountBilled  = filter_var($credits['accountBilld'],FILTER_SANITIZE_STRING);
+				$invoiceId      = filter_var($credits['invoiceID'],FILTER_SANITIZE_STRING);
+				$amount         = filter_var($credits['amount'],FILTER_SANITIZE_STRING);
 
-				$imgGenerator =  new ImgGenerator();
+				$imgGenerator = new ImgGenerator();
 				$imgGenerator->setAccountBilld($accountBilled);
-                $imgGenerator->setAmount($amount);
-                $imgGenerator->setInvoiceId($amount);
-                $imgGenerator->initConfigs();
+				$imgGenerator->setAmount($amount);
+				$imgGenerator->setInvoiceId($amount);
+				$imgGenerator->initConfigs();
 				$link = $imgGenerator->createImage();
-				 if($link === null){
-					 echo 'unable to create image';
-				 }else{
-					 echo '<a href="'.$link.'"> Look Image</a>';
-				 }
+				if ($link === null) {
+					echo 'unable to create image';
+				} else {
+//					 header("Location: index.php");
+					echo '<a href="download.php?img=' . $link . '"> Download Image</a>';
+				}
 			}
 			// $imgGenerator->_
 		}
 	}
 
-	function sendMail($credits){
+	public static function sendMail($credits)
+	{
+        foreach($credits as $key => $value){
+            $credits[$key] = filter_var($value,FILTER_SANITIZE_STRING);
+        }
 		$mail = new PHPMailer;
 
 //Enable SMTP debugging.
@@ -64,11 +74,11 @@ require_once('vendor/autoload.php');
 
 		$mail->addAddress("samundrak@yahoo.com", "Admin");
 //Address to which recipient will reply
-        $mail->addReplyTo("reply@yourdomain.com", "Reply");
+		$mail->addReplyTo("reply@yourdomain.com", "Reply");
 
 //CC and BCC
-        $mail->addCC("cc@example.com");
-        $mail->addBCC("bcc@example.com");
+		$mail->addCC("cc@example.com");
+		$mail->addBCC("bcc@example.com");
 		$mail->isHTML(true);
 
 		$mail->Subject = "Information about invoice";
@@ -77,39 +87,39 @@ require_once('vendor/autoload.php');
 			Here is detail of new Invoice <br/>
 			<table >
 				<tr><td>Firstname</td><td>
-						 '.$credits['firstname'].'
+						 ' . $credits['firstname'] . '
 					</td></tr>
 				<tr><td>Lastname</td><td>
-						 '.$credits['lastname'].'
+						 ' . $credits['lastname'] . '
 					</td></tr>
 				<tr><td>Your Email</td><td>
-						 '.$credits['email'].'
+						 ' . $credits['email'] . '
 
 					</td></tr>
 				<tr><td>Phone number</td><td>
-						 '.$credits['number'].'
+						 ' . $credits['number'] . '
 					</td></tr>
 				<tr>
 					<td><label>Account Billed</label></td>
-					<td> '.$credits['accountBilld'].'</td>
+					<td> ' . $credits['accountBilld'] . '</td>
 			</tr>
 			<tr>
 				<td><label>Invoice ID</label></td>
-				<td>'.$credits['invoiceID'].'</td>
+				<td>' . $credits['invoiceID'] . '</td>
 			</tr>
 				<tr>
 			<td><label>Amount</label></td>
-			<td>'.$credits['amount'].'</td>
+			<td>' . $credits['amount'] . '</td>
 				<tr><td>Zip Code</td><td>
 
-						'.$credits['zip'].'
+						' . $credits['zip'] . '
 					</td></tr>
 				<tr><td>Address</td><td>
 
-						'.$credits['address'].'
+						' . $credits['address'] . '
 					</td></tr>
 				<tr><td>Country</td><td>
-						 '.$credits['country'].'
+						 ' . $credits['country'] . '
 					</td></tr>
 
 				</tr>
@@ -118,13 +128,26 @@ require_once('vendor/autoload.php');
 		</p>';
 		$mail->AltBody = "Thankyou";
 
-		if(!$mail->send())
-		{
+		if (!$mail->send()) {
 //			echo "Mailer Error: " . $mail->ErrorInfo;
-		}
-		else
-		{
+		} else {
 //			echo "Message has been sent successfully";
 		}
 	}
+
+	public static function confirmation(){
+        if(empty($_SESSION['data'])) header('Location: index.php');
+        if(isset($_POST['submit'])){
+            $ref =  $_POST;
+            $old = $_SESSION['data'];
+            if($ref['invoiceID'] === $old['invoiceID']){
+                Form::checkIn($old);
+                Form::sendMail($old);
+            }else{
+                echo 'Invoice Didnt Matched!';
+            }
+            session_destroy();
+        }
+    }
+}
 ?>

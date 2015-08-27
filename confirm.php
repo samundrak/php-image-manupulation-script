@@ -1,21 +1,7 @@
 <?php
 session_start();
 include 'FormAccess.php';
-
-if(empty($_SESSION['data'])) header('Location: index.php');
-
-
-if(isset($_POST['submit'])){
-            $ref =  $_POST;
-            $old = $_SESSION['data'];
-            if($ref['invoiceID'] === $old['invoiceID']){
-                checkIn($old);
-                sendMail($old);
-            }else{
-                echo 'Invoice Didnt Matched!';
-            }
-    session_destroy();
-}
+Form::confirmation();
 ?>
 <html>
 <head>

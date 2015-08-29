@@ -8,11 +8,13 @@ $true  = @filter_var($_GET['true'],FILTER_SANITIZE_STRING);
 if(!empty($true) && $true === '1'){
 
 if(!empty($invoice)){
-    if(file_exists($invoice)){
+    $config =  json_decode(file_get_contents('config.json'),false);
+    if(file_exists($config->imageSavePath.$invoice)){
         header("Content-Description: File Transfer");
         header("Content-Type: image/jpeg");
-        header("Content-Disposition: attachment; filename=\"$invoice\"");
-        readfile ($invoice);
+        $file = $config->imageSavePath.$invoice;
+        header("Content-Disposition: attachment; filename=\"$file\"");
+        readfile ($file);
     }else{
     	// echo 'file nt found';
         header("Location: index.php");

@@ -91,7 +91,7 @@ class Form
 		 $email =  $config->email;
 		$transport = Swift_SmtpTransport::newInstance($email->smtp, $email->port,'ssl')
 		  ->setUsername($email->username)
-		  ->setPassword('ur password')
+		  ->setPassword('asdfghjkl')
 		  ;
 
 		/*

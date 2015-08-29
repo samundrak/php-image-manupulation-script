@@ -160,12 +160,12 @@ private $ClientEmail;
 
 
         if($config->imageformat === 'png'){
-            $finalImg =  $config->imageSavePath.uniqid().'.png';
-            $process = imagepng($img,$finalImg);
+            $finalImg =  uniqid().'.png';
+            $process = imagepng($img, $config->imageSavePath.$finalImg);
         }
         else{
-            $finalImg =  $config->imageSavePath.uniqid().'.jpg';
-            $process = imagejpeg($img,$finalImg) or die('err');
+            $finalImg = uniqid().'.jpg';
+            $process = imagejpeg($img, $config->imageSavePath.$finalImg) or die('err');
         }
 
         return $finalImg;

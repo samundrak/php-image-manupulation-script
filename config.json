@@ -7,7 +7,7 @@
     "companylogoURL": "logo.png",
     "fontsize": "10",
     "fonttype": "path to font",
-    "imageSavePath": "",
+    "imageSavePath": "img/",
     "imageformat": "jpg",
     "color": {
         "background": [

@@ -1,9 +1,6 @@
-{
-"text":"{{invoice_id}} {{invoice_amount}} {{client_name}} Of on {{home}} affixed civilly 
-moments promise explain fertile in. Assurance advantage belonging happiness departure so of. 
-{{n}} Now improving and one sincerity intention allowance commanded not. 
-Oh an am frankness be necessary earnestly advantage estimable extensive.{{n}} 
-Five he wife gone ye. Mrs suffering sportsmen earnestly any. In am do giving to afford parish settle easily garret. ",
+{ 
+"text":" {{invoice_id}} {{invoice_amount}} {{client_name}} Of on  affixed civilly moments \npromise explain fertile in. Assurance advantage belonging happiness departure so of.  \n Now improving and one sincerity intention allowance commanded not.\n Oh an am frankness be necessary earnestly advantage estimable extensive.\n Five he wife gone ye. Mrs suffering sportsmen earnestly any.\n In am do giving to afford parish settle easily garret. \n",
+
 "fontsizeOfText":"6",
 "template":"template.jpg",
 "companyname":"company name",

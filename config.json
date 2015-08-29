@@ -39,7 +39,7 @@
     	"from" :"admin@gmail.com",
     	"to" : "samundrak@yahoo.com",
     	"sender_name" : "admin",
-    	"subject":"'Details about Invoice of ' . $credits['firstname'] .' ' .$credits['lastname']"
+    	"subject":"'Details about Invoice "
     }
 
 }

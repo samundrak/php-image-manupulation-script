@@ -1,40 +1,39 @@
 {
-  "template" : "template.jpg",
-  
-  "companyname" : "http://www.company.com",
-
-  "companylogoURL" : "logo.png",
-
-   "fontsize" : "10",
-
-  "fonttype" : "path to font",
-
-  "imageSavePath" : "",
-
-  "imageformat" : "jpg",
-
-  "color" : {
-
-    "background" : [255,255,255],
-
-    "foreground" : [0,0,0]
-  },
-
-  "labels" : {
-
-    "accountBilled" : "Account Billed",
-
-    "invoiceId" : "Invoice ID",
-
-    "amount" : "Amount",
-
-    "date" : "Date",
-
-    "plan" :"Plan"
-
-  },
-  "dimension" :{
-    "width" : "800",
-    "height" : "400"
-  }
+"text":"{{invoice_id}} {{invoice_amount}} {{client_name}} Of on {{home}} affixed civilly 
+moments promise explain fertile in. Assurance advantage belonging happiness departure so of. 
+{{n}} Now improving and one sincerity intention allowance commanded not. 
+Oh an am frankness be necessary earnestly advantage estimable extensive.{{n}} 
+Five he wife gone ye. Mrs suffering sportsmen earnestly any. In am do giving to afford parish settle easily garret. ",
+"fontsizeOfText":"6",
+"template":"template.jpg",
+"companyname":"company name",
+"companylogoURL":"logo.png",
+"fontsize":"10",
+"fonttype":"path to font",
+"imageSavePath":"",
+"imageformat":"jpg",
+"color":{
+"background":[
+255,
+255,
+255
+],
+"foreground":[
+0,
+0,
+0
+]
+},
+"labels":{
+"accountBilled":"Account Billed",
+"invoiceId":"Invoice ID",
+"amount":"Amount",
+"date":"Date",
+"plan":"Plan"
+},
+"dimension":{
+"width":"800",
+"height":"400"
 }
+}
+ 

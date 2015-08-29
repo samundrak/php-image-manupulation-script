@@ -14,12 +14,12 @@ if(!empty($invoice)){
         header("Content-Disposition: attachment; filename=\"$invoice\"");
         readfile ($invoice);
     }else{
-    	echo 'file nt found';
-        // header("Location: index.php");
+    	// echo 'file nt found';
+        header("Location: index.php");
     }
 }else{
-	echo 'no download';
-//    header("Location: index.php");
+	// echo 'no download';
+   header("Location: index.php");
 
  }
 }

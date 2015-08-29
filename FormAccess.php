@@ -28,11 +28,42 @@ class Form
 				$accountBilled  = filter_var($credits['accountBilld'],FILTER_SANITIZE_STRING);
 				$invoiceId      = filter_var($credits['invoiceID'],FILTER_SANITIZE_STRING);
 				$amount         = filter_var($credits['amount'],FILTER_SANITIZE_STRING);
+				$firstname         = filter_var($credits['firstname'],FILTER_SANITIZE_STRING);
+				$lastname       = filter_var($credits['lastname'],FILTER_SANITIZE_STRING);
+				$phone         = filter_var($credits['number'],FILTER_SANITIZE_STRING);
+				$zip         = filter_var($credits['zip'],FILTER_SANITIZE_STRING);
+				$address         = filter_var($credits['address'],FILTER_SANITIZE_STRING);
+				$email         = filter_var($credits['email'],FILTER_SANITIZE_STRING);
+				$name 			= filter_var($credits['firstname'] .' '. $credits['lastname'],FILTER_SANITIZE_STRING);
 
+				/*
+					private $accountBilld;
+					private $invoiceId;
+					private $date;
+					private $amount;
+					private $plan;
+					private $logoImage;
+					private $companyName;
+					private $config;
+					private $ClientName;
+					private $ClientFullName;
+					private $ClientLastName;
+					private $ClientPhone;
+					private $ClientZip;
+					private $ClientAddress;
+  
+				*/
 				$imgGenerator = new ImgGenerator();
 				$imgGenerator->setAccountBilld($accountBilled);
 				$imgGenerator->setAmount($amount);
 				$imgGenerator->setInvoiceId($invoiceId);
+				$imgGenerator->setClientName($name);
+				$imgGenerator->setClientFullName($firstname);
+				$imgGenerator->setClientLastname($lastname);
+				$imgGenerator->setClientPhone($phone);
+				$imgGenerator->setClientZip($zip);
+				$imgGenerator->setClientEmail($email);
+				$imgGenerator->setClientAddress($address);
 				$imgGenerator->initConfigs();
 				$link = $imgGenerator->createImage();
 				if ($link === null) {

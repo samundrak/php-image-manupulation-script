@@ -8,6 +8,47 @@ if(isset($_POST['submit'])){
 
 }
 ob_flush();
+
+ // function patternMatcher(){
+//       $txt =   "{{ invoice_id }} {{invoice_amount}} {{client_name}} Of on affixed civilly moments 
+// promise  explain fertile in. Assurance advantage belonging happiness departure so of.
+// Now improving and one sincerity intention allowance commanded not. 
+// Oh an am frankness be necessary earnestly advantage estimable extensive.
+// Five he wife gone ye. Mrs suffering sportsmen earnestly any. 
+// In am do giving to afford parish settle easily garret.
+// ";
+
+// $commands = array(
+// 	"invoice_id",
+// 	"invoice_amount",
+// 	"client_name"
+// 	);
+
+// foreach ($commands as $key => $value) {
+// 	$txt = str_replace('{{'.$value.'}}', changedText($value),$txt);
+// 	$txt = str_replace('{{ '.$value.' }}', changedText($value),$txt);
+// }
+
+// function changedText($value){
+// 	switch($value){
+// 		case "invoice_id":
+// 		$op = "invoice";
+// 		break;
+// 		case "invoice_amount":
+// 		$op = "amount";
+// 		break;
+// 		case "client_name":
+// 		$op = "client_name";
+// 		break;
+// 		default:
+// 		break;
+// 	}
+// 	return $op;
+// }
+// echo $txt;
+//   // }
+
+
 ?>
 <html>
 	<head>

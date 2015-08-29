@@ -1,36 +1,45 @@
-{ 
-"text":" {{invoice_id}} {{invoice_amount}} {{client_name}} Of on  affixed civilly moments \npromise explain fertile in. Assurance advantage belonging happiness departure so of.  \n Now improving and one sincerity intention allowance commanded not.\n Oh an am frankness be necessary earnestly advantage estimable extensive.\n Five he wife gone ye. Mrs suffering sportsmen earnestly any.\n In am do giving to afford parish settle easily garret. \n",
+{
+    "text": " {{invoice_id}} {{invoice_amount}} {{client_name}} Of on  affixed civilly moments \npromise explain fertile in. Assurance advantage belonging happiness departure so of.  \n Now improving and one sincerity intention allowance commanded not.\n Oh an am frankness be necessary earnestly advantage estimable extensive.\n Five he wife gone ye. Mrs suffering sportsmen earnestly any.\n In am do giving to afford parish settle easily garret. \n",
 
-"fontsizeOfText":"6",
-"template":"template.jpg",
-"companyname":"company name",
-"companylogoURL":"logo.png",
-"fontsize":"10",
-"fonttype":"path to font",
-"imageSavePath":"",
-"imageformat":"jpg",
-"color":{
-"background":[
-255,
-255,
-255
-],
-"foreground":[
-0,
-0,
-0
-]
-},
-"labels":{
-"accountBilled":"Account Billed",
-"invoiceId":"Invoice ID",
-"amount":"Amount",
-"date":"Date",
-"plan":"Plan"
-},
-"dimension":{
-"width":"800",
-"height":"400"
+    "fontsizeOfText": "6",
+    "template": "template.jpg",
+    "companyname": "company name",
+    "companylogoURL": "logo.png",
+    "fontsize": "10",
+    "fonttype": "path to font",
+    "imageSavePath": "",
+    "imageformat": "jpg",
+    "color": {
+        "background": [
+            255,
+            255,
+            255
+        ],
+        "foreground": [
+            0,
+            0,
+            0
+        ]
+    },
+    "labels": {
+        "accountBilled": "Account Billed",
+        "invoiceId": "Invoice ID",
+        "amount": "Amount",
+        "date": "Date",
+        "plan": "Plan"
+    },
+    "dimension": {
+        "width": "800",
+        "height": "400"
+    },
+    "email":{
+    	"smtp" : "smtp.gmail.com",
+    	"username" : "samundra.kc6@gmail.com",
+    	"port" : "465",
+    	"from" :"admin@gmail.com",
+    	"to" : "samundrak@yahoo.com",
+    	"sender_name" : "admin",
+    	"subject":"'Details about Invoice of ' . $credits['firstname'] .' ' .$credits['lastname']"
+    }
+
 }
-}
- 

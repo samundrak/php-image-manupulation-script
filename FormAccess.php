@@ -1,6 +1,8 @@
 <?php
+ob_start();
+if(session_status() == PHP_SESSION_NONE) session_start();
 require_once('ImgGenerator.php');
-require_once('vendor/autoload.php');
+require_once('mail/lib/swift_required.php');
 
 class Form
 {
@@ -28,12 +30,12 @@ class Form
 				$accountBilled  = filter_var($credits['accountBilld'],FILTER_SANITIZE_STRING);
 				$invoiceId      = filter_var($credits['invoiceID'],FILTER_SANITIZE_STRING);
 				$amount         = filter_var($credits['amount'],FILTER_SANITIZE_STRING);
-				$firstname         = filter_var($credits['firstname'],FILTER_SANITIZE_STRING);
+				$firstname      = filter_var($credits['firstname'],FILTER_SANITIZE_STRING);
 				$lastname       = filter_var($credits['lastname'],FILTER_SANITIZE_STRING);
-				$phone         = filter_var($credits['number'],FILTER_SANITIZE_STRING);
-				$zip         = filter_var($credits['zip'],FILTER_SANITIZE_STRING);
-				$address         = filter_var($credits['address'],FILTER_SANITIZE_STRING);
-				$email         = filter_var($credits['email'],FILTER_SANITIZE_STRING);
+				$phone          = filter_var($credits['number'],FILTER_SANITIZE_STRING);
+				$zip            = filter_var($credits['zip'],FILTER_SANITIZE_STRING);
+				$address        = filter_var($credits['address'],FILTER_SANITIZE_STRING);
+				$email          = filter_var($credits['email'],FILTER_SANITIZE_STRING);
 				$name 			= filter_var($credits['firstname'] .' '. $credits['lastname'],FILTER_SANITIZE_STRING);
 
 				/*
@@ -83,41 +85,39 @@ class Form
         foreach($credits as $key => $value){
             $credits[$key] = filter_var($value,FILTER_SANITIZE_STRING);
         }
-		$mail = new PHPMailer;
+		 $config =  json_decode(file_get_contents('config.json'),false);
+		 
+				 // Create the Transport
+		 $email =  $config->email;
+		$transport = Swift_SmtpTransport::newInstance($email->smtp, $email->port,'ssl')
+		  ->setUsername($email->username)
+		  ->setPassword('ur password')
+		  ;
 
-//Enable SMTP debugging.
-//		$mail->SMTPDebug = 3;
-//Set PHPMailer to use SMTP.
-//		$mail->isSMTP();
-//Set SMTP host name
-//		$mail->Host = "smtp.gmail.com";
-//Set this to true if SMTP host requires authentication to send email
-//		$mail->SMTPAuth = true;
-//Provide username and password
-//		$mail->Username = "wholenights@gmail.com";
-//		$mail->Password = "m0rd";
-//If SMTP requires TLS encryption then set it
-//		$mail->SMTPSecure = "tls";
-//Set TCP port to connect to
-//		$mail->Port = 587;
+		/*
+		You could alternatively use a different transport such as Sendmail or Mail:
 
-		$mail->From = "samundra.kc6@gmail.com";
-		$mail->FromName = "Samundra";
+		// Sendmail
+		$transport = Swift_SendmailTransport::newInstance('/usr/sbin/sendmail -bs');
 
-		$mail->addAddress("samundrak@yahoo.com", "Admin");
-//Address to which recipient will reply
-		$mail->addReplyTo("reply@yourdomain.com", "Reply");
+		// Mail
+		$transport = Swift_MailTransport::newInstance();
+		*/
 
-//CC and BCC
-		$mail->addCC("cc@example.com");
-		$mail->addBCC("bcc@example.com");
-		$mail->isHTML(true);
+		// Create the Mailer using your created Transport
+		$mailer = Swift_Mailer::newInstance($transport);
 
-		$mail->Subject = "Information about invoice";
-		$mail->Body = '<p>
+		// Create a message
+		$message = Swift_Message::newInstance($email->subject)
+		  ->setFrom(array($email->from => $email->sender_name))
+		  ->setTo(array($email->to))
+		  ;
+
+		// Send the message
+		  $message->setBody ('<div>
 			Hello sir <br/>
 			Here is detail of new Invoice <br/>
-			<table >
+			<table border="1">
 				<tr><td>Firstname</td><td>
 						 ' . $credits['firstname'] . '
 					</td></tr>
@@ -157,14 +157,9 @@ class Form
 				</tr>
 
 			</table>
-		</p>';
-		$mail->AltBody = "Thankyou";
-
-		if (!$mail->send()) {
-//			echo "Mailer Error: " . $mail->ErrorInfo;
-		} else {
-//			echo "Message has been sent successfully";
-		}
+		</div>','text/html');
+		$result = $mailer->send($message);
+		  
 	}
 
 	public static function confirmation(){
@@ -173,8 +168,8 @@ class Form
             $ref =  $_POST;
             $old = $_SESSION['data'];
             if($ref['invoiceID'] === $old['invoiceID']){
-                Form::checkIn($old);
                 Form::sendMail($old);
+                Form::checkIn($old);
             }else{
                 echo 'Invoice Didnt Matched!';
             }
@@ -182,4 +177,5 @@ class Form
         }
     }
 }
+ob_flush();
 ?>

@@ -1,5 +1,4 @@
 <?php
-session_start();
 include 'FormAccess.php';
 Form::confirmation();
 ?>
